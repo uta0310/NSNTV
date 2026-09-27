@@ -56,59 +56,9 @@
 
             <div class="section-inner">
 
-                <div class="news-list">
+            <div class="news-list" id="news-list">
 
-                    <a href="news-detail.html" class="news-item">
-
-                        <time datetime="2026-09-11">
-                            2026.09.11
-                        </time>
-
-                        <span class="news-category">
-                            お知らせ
-                        </span>
-
-                        <p>
-                            NSNテレビ公式サイトをオープンしました。
-                        </p>
-
-                    </a>
-
-
-                    <a href="news-detail-2.html" class="news-item">
-
-                        <time datetime="2026-09-10">
-                            2026.09.10
-                        </time>
-
-                        <span class="news-category">
-                            番組
-                        </span>
-
-                        <p>
-                            新番組の情報を公開しました。
-                        </p>
-
-                    </a>
-
-
-                    <a href="news-detail-3.html" class="news-item">
-
-                        <time datetime="2026-09-08">
-                            2026.09.08
-                        </time>
-
-                        <span class="news-category">
-                            イベント
-                        </span>
-
-                        <p>
-                            今後のイベント情報をお知らせします。
-                        </p>
-
-                    </a>
-
-                </div>
+</div>    
 
             </div>
 
@@ -156,6 +106,51 @@
         </div>
 
     </footer>
+
+<script>
+    fetch("news/news.json")
+        .then(response => response.json())
+        .then(data => {
+
+            const newsList = document.getElementById("news-list");
+
+            data.items.forEach(news => {
+
+                const item = document.createElement("a");
+
+                item.href = "#";
+                item.className = "news-item";
+
+                const date = new Date(news.date);
+
+                const formattedDate =
+                    date.getFullYear() + "." +
+                    String(date.getMonth() + 1).padStart(2, "0") + "." +
+                    String(date.getDate()).padStart(2, "0");
+
+                item.innerHTML = `
+                    <time datetime="${news.date}">
+                        ${formattedDate}
+                    </time>
+
+                    <span class="news-category">
+                        ${news.category}
+                    </span>
+
+                    <p>
+                        ${news.title}
+                    </p>
+                `;
+
+                newsList.appendChild(item);
+
+            });
+
+        })
+        .catch(error => {
+            console.error("ニュースの読み込みに失敗しました:", error);
+        });
+</script>
 
 </body>
 
