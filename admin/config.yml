@@ -34,3 +34,8 @@ collections:
               - label: "本文"
                 name: "body"
                 widget: "markdown"
+
+              - label: "画像"
+                name: "image"
+                widget: "image"
+                required: false
