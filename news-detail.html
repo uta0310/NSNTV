@@ -8,6 +8,8 @@
     <title>ニュース記事 | NSNテレビ</title>
 
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
 </head>
 
 <body>
@@ -134,7 +136,7 @@
             document.getElementById("news-lead").textContent = news.title;
 
             document.getElementById("news-content").innerHTML =
-                "<p>" + news.body + "</p>";
+    marked.parse(news.body);
 
         })
         .catch(error => {
