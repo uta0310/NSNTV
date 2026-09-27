@@ -1,1 +1,30 @@
+backend:
+  name: turbo-github
+  turbo_site_id: f43d1d2f-f285-41f8-8bfd-7888ac5b8e6f
+  branch: main
 
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "news"
+    label: "ニュース"
+    folder: "news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "タイトル"
+        name: "title"
+        widget: "string"
+
+      - label: "日付"
+        name: "date"
+        widget: "datetime"
+
+      - label: "カテゴリー"
+        name: "category"
+        widget: "string"
+
+      - label: "本文"
+        name: "body"
+        widget: "markdown"
