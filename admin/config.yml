@@ -6,25 +6,28 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-collections:
+files:
   - name: "news"
     label: "ニュース"
-    folder: "news"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    file: "news/news.json"
+    format: "json"
     fields:
-      - label: "タイトル"
-        name: "title"
-        widget: "string"
+      - label: "ニュース一覧"
+        name: "items"
+        widget: "list"
+        fields:
+          - label: "タイトル"
+            name: "title"
+            widget: "string"
 
-      - label: "日付"
-        name: "date"
-        widget: "datetime"
+          - label: "日付"
+            name: "date"
+            widget: "datetime"
 
-      - label: "カテゴリー"
-        name: "category"
-        widget: "string"
+          - label: "カテゴリー"
+            name: "category"
+            widget: "string"
 
-      - label: "本文"
-        name: "body"
-        widget: "markdown"
+          - label: "本文"
+            name: "body"
+            widget: "markdown"
