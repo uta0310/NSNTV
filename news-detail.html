@@ -135,6 +135,15 @@
             document.getElementById("news-title").textContent = news.title;
             document.getElementById("news-lead").textContent = news.title;
 
+            const newsImage = document.querySelector(".news-detail-image img");
+
+if (news.image) {
+    newsImage.src = news.image;
+    newsImage.alt = news.title;
+} else {
+    newsImage.parentElement.style.display = "none";
+}
+
             document.getElementById("news-content").innerHTML =
     marked.parse(news.body);
 
