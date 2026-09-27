@@ -118,7 +118,7 @@
 
                 const item = document.createElement("a");
 
-                item.href = "#";
+                item.href = "news-detail.html?id=" + data.items.indexOf(news);
                 item.className = "news-item";
 
                 const date = new Date(news.date);

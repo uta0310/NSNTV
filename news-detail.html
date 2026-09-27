@@ -35,54 +35,36 @@
 
     <main>
 
-        <article class="news-detail">
+    <article class="news-detail">
 
-            <div class="section-inner">
+        <div class="section-inner">
 
-                <p class="section-label">
-                    NEWS
-                </p>
+            <p class="section-label">
+                NEWS
+            </p>
 
-                <time>
-                    2026.09.13
-                </time>
+            <time id="news-date"></time>
 
-                <h1>
-                    ニュース記事のタイトル
-                </h1>
+            <h1 id="news-title"></h1>
 
-                <p class="news-detail-lead">
-                    ニュース記事の概要やリード文が入ります。
-                </p>
+            <p class="news-detail-lead" id="news-lead"></p>
 
-
-                <div class="news-detail-image">
-    <img src="img_2103.jpg" alt="ニュース画像">
-</div>
-
-
-                <div class="news-detail-content">
-
-                    <p>
-                        ここにニュース本文が入ります。
-                    </p>
-
-                    <p>
-                        ニュースの詳しい内容や関連する情報などを掲載できます。
-                    </p>
-
-                </div>
-
-
-                <a href="news.html" class="news-back">
-                    ← ニュース一覧に戻る
-                </a>
-
+            <div class="news-detail-image">
+                <img src="img_2103.jpg" alt="ニュース画像">
             </div>
 
-        </article>
+            <div class="news-detail-content" id="news-content">
+            </div>
 
-    </main>
+            <a href="news.html" class="news-back">
+                ← ニュース一覧に戻る
+            </a>
+
+        </div>
+
+    </article>
+
+</main>
 
 
     <footer class="site-footer">
@@ -124,6 +106,41 @@
         </div>
 
     </footer>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const newsId = Number(params.get("id"));
+
+    fetch("news/news.json")
+        .then(response => response.json())
+        .then(data => {
+
+            const news = data.items[newsId];
+
+            if (!news) {
+                document.getElementById("news-title").textContent = "ニュースが見つかりません";
+                return;
+            }
+
+            const date = new Date(news.date);
+
+            const formattedDate =
+                date.getFullYear() + "." +
+                String(date.getMonth() + 1).padStart(2, "0") + "." +
+                String(date.getDate()).padStart(2, "0");
+
+            document.getElementById("news-date").textContent = formattedDate;
+            document.getElementById("news-title").textContent = news.title;
+            document.getElementById("news-lead").textContent = news.title;
+
+            document.getElementById("news-content").innerHTML =
+                "<p>" + news.body + "</p>";
+
+        })
+        .catch(error => {
+            console.error("ニュースの読み込みに失敗しました:", error);
+        });
+</script>
 
 </body>
 
