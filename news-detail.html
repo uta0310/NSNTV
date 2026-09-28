@@ -52,8 +52,8 @@
             <p class="news-detail-lead" id="news-lead"></p>
 
             <div class="news-detail-image">
-                <img src="img_2103.jpg" alt="ニュース画像">
-            </div>
+    <img src="" alt="ニュース画像">
+</div>
 
             <div class="news-detail-content" id="news-content">
             </div>
@@ -138,7 +138,7 @@
             const newsImage = document.querySelector(".news-detail-image img");
 
 if (news.image) {
-    newsImage.src = news.image;
+    newsImage.src = "/NSNTV/" + news.image;
     newsImage.alt = news.title;
 } else {
     newsImage.parentElement.style.display = "none";
